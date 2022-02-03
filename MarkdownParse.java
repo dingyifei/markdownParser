@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class MarkdownParse {
+    public static boolean containsSpace(String link){
+        return link.contains(" ");
+    }
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         
@@ -35,7 +38,11 @@ public class MarkdownParse {
                 } else {
                     if (curr == ')') {
                         end = currentIndex;
-                        toReturn.add(markdown.substring(start + 1, end));
+                        String link = markdown.substring(start + 1, end);
+                        if(!containsSpace(link)){
+                            toReturn.add(link);
+                        }
+                        
                         bracketTracker.pop();
                         findLink = false;
                     }
@@ -58,6 +65,7 @@ public class MarkdownParse {
             currentIndex++;
         }
 
+        
         return toReturn;
 
     }

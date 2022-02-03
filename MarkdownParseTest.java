@@ -69,8 +69,16 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void FailTest() {
-        fail();
+    public void TestFile1() throws IOException, NoSuchFileException {
+        
+                //passes if running Markdown parse returns the correct text for "test-file4.md"
+                List<String> correctOutput = List.of("https://something.com", "some-page.html");
+                Path fileName = Path.of("test-file.md");
+                // read the file contents into a string
+                String contents = Files.readString(fileName);
+                // run getLinks on the contents of the file
+                ArrayList<String> links = MarkdownParse.getLinks(contents);
+                assertEquals(correctOutput,links);
     }
 }
 
