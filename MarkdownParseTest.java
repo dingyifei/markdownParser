@@ -68,6 +68,11 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(contents);
         assertEquals(correctOutput,links);
     }
+
+    @Test
+    public void FailTest() {
+        fail();
+    }
 }
 
 
